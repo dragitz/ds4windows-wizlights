@@ -26,3 +26,8 @@ If done correctly you can now use the Right Stick to control the luminosity.
 
 
 If you want to use the gyro data, manually remap gyro data to upward/downward movement of stick from the profile editor (in ds4windows)
+
+
+* Bugs
+
+I haven't fully adapted the script for all possible ip addresses, so if your ip is bigger than 192.168.9.99, it won't work and you must manually change line 92 "Joycon Wiz Lights (global)" ¯\_(ツ)_/¯ sorry, not sorry
