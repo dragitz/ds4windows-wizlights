@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>170</ID>
+      <Description>"Populate Xinput Map (DS4Windows version 2.2.2 - 2.2.4)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+alloc(XinputMap,1000)
+registersymbol(XinputMap)
+
+//sig: 44 88 42 ? 4c 8b c0 45 0f b6 40 ? 44 88 42 ? 4c 8b c0 45 0f b6 40 ? 44 88 42 ? 4c 8b c0 45 0f b6 40 ? 44 88 42 ? 4c 8b c0
+aobscan(PopulateMap,44 88 42 6D 4C 8B C0) // should be unique
+alloc(newmem,500,PopulateMap)
+
+label(code)
+label(return)
+
+newmem:
+code:
+  mov [rdx+6D],r8l
+  mov [XinputMap],rdx
+  mov r8,rax
+  jmp return
+
+PopulateMap:
+  jmp newmem
+  nop 2
+return:
+registersymbol(PopulateMap)
+
+[DISABLE]
+
+PopulateMap:
+  db 44 88 42 6D 4C 8B C0
+
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DS4Windows.DS4StateFieldMapping::populateState+173
+
+DS4Windows.DS4StateFieldMapping::populateState+147: 44 88 42 75        - mov [rdx+75],r8l
+DS4Windows.DS4StateFieldMapping::populateState+14B: 4C 8B C0           - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+14E: 41 83 F9 0E        - cmp r9d,0E
+DS4Windows.DS4StateFieldMapping::populateState+152: 0F 86 C6 00 00 00  - jbe DS4Windows.DS4StateFieldMapping::populateState+21E
+DS4Windows.DS4StateFieldMapping::populateState+158: 45 0F B6 40 1E     - movzx r8d,byte ptr [r8+1E]
+DS4Windows.DS4StateFieldMapping::populateState+15D: 44 88 42 77        - mov [rdx+77],r8l
+DS4Windows.DS4StateFieldMapping::populateState+161: 4C 8B C0           - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+164: 41 83 F9 12        - cmp r9d,12
+DS4Windows.DS4StateFieldMapping::populateState+168: 0F 86 B0 00 00 00  - jbe DS4Windows.DS4StateFieldMapping::populateState+21E
+DS4Windows.DS4StateFieldMapping::populateState+16E: 45 0F B6 40 22     - movzx r8d,byte ptr [r8+22]
+// ---------- INJECTING HERE ----------
+DS4Windows.DS4StateFieldMapping::populateState+173: 44 88 42 6D        - mov [rdx+6D],r8l
+// ---------- DONE INJECTING  ----------
+DS4Windows.DS4StateFieldMapping::populateState+177: 4C 8B C0           - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+17A: 45 0F B6 40 20     - movzx r8d,byte ptr [r8+20]
+DS4Windows.DS4StateFieldMapping::populateState+17F: 44 88 42 6B        - mov [rdx+6B],r8l
+DS4Windows.DS4StateFieldMapping::populateState+183: 4C 8B C0           - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+186: 45 0F B6 40 21     - movzx r8d,byte ptr [r8+21]
+DS4Windows.DS4StateFieldMapping::populateState+18B: 44 88 42 6C        - mov [rdx+6C],r8l
+DS4Windows.DS4StateFieldMapping::populateState+18F: 4C 8B C0           - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+192: 45 0F B6 40 1F     - movzx r8d,byte ptr [r8+1F]
+DS4Windows.DS4StateFieldMapping::populateState+197: 44 88 42 6A        - mov [rdx+6A],r8l
+DS4Windows.DS4StateFieldMapping::populateState+19B: 4C 8B C0           - mov r8,rax
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>169</ID>
+          <Description>"Map"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>292</ID>
+              <Description>"Vtable"</Description>
+              <LastState Value="00007FF9E6DB0B28" RealAddress="1B7C20585B0"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>[XinputMap]-30+30</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>293</ID>
+              <Description>"Motion"</Description>
+              <LastState Value="000001B7423B7888" RealAddress="1B7C20585B8"/>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>[XinputMap]-30+38</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>294</ID>
+              <Description>"LSAngle"</Description>
+              <LastState Value="0" RealAddress="1B7C20585C0"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+40</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>295</ID>
+              <Description>"RSAngle"</Description>
+              <LastState Value="0" RealAddress="1B7C20585C8"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+48</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>296</ID>
+              <Description>"LSAngleRad"</Description>
+              <LastState Value="0" RealAddress="1B7C20585D0"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+50</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>297</ID>
+              <Description>"RSAngleRad"</Description>
+              <LastState Value="0" RealAddress="1B7C20585D8"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+58</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>298</ID>
+              <Description>"LXUnit"</Description>
+              <LastState Value="0" RealAddress="1B7C20585E0"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+60</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>299</ID>
+              <Description>"LYUnit"</Description>
+              <LastState Value="0" RealAddress="1B7C20585E8"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+68</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>300</ID>
+              <Description>"RXUnit"</Description>
+              <LastState Value="0" RealAddress="1B7C20585F0"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+70</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>301</ID>
+              <Description>"RYUnit"</Description>
+              <LastState Value="0" RealAddress="1B7C20585F8"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+78</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>302</ID>
+              <Description>"elapsedTime"</Description>
+              <LastState Value="0" RealAddress="1B7C2058600"/>
+              <VariableType>Double</VariableType>
+              <Address>[XinputMap]-30+80</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>303</ID>
+              <Description>"totalMicroSec"</Description>
+              <LastState Value="0" RealAddress="1B7C2058608"/>
+              <VariableType>8 Bytes</VariableType>
+              <Address>[XinputMap]-30+88</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>304</ID>
+              <Description>"PacketCounter"</Description>
+              <LastState Value="0" RealAddress="1B7C2058610"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+90</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>305</ID>
+              <Description>"SASteeringWheelEmulationUnit"</Description>
+              <LastState Value="0" RealAddress="1B7C2058614"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+94</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>306</ID>
+              <Description>"ds4Timestamp"</Description>
+              <LastState Value="0" RealAddress="1B7C2058618"/>
+              <VariableType>2 Bytes</VariableType>
+              <Address>[XinputMap]-30+98</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>307</ID>
+              <Description>"Square"</Description>
+              <LastState Value="0" RealAddress="1B7C205861A"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9A</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>308</ID>
+              <Description>"Triangle"</Description>
+              <LastState Value="0" RealAddress="1B7C205861B"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9B</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>309</ID>
+              <Description>"Circle"</Description>
+              <LastState Value="0" RealAddress="1B7C205861C"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>310</ID>
+              <Description>"Cross"</Description>
+              <LastState Value="0" RealAddress="1B7C205861D"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9D</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>311</ID>
+              <Description>"DpadUp"</Description>
+              <LastState Value="0" RealAddress="1B7C205861E"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9E</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>312</ID>
+              <Description>"DpadDown"</Description>
+              <LastState Value="0" RealAddress="1B7C205861F"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+9F</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>313</ID>
+              <Description>"DpadLeft"</Description>
+              <LastState Value="0" RealAddress="1B7C2058620"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>314</ID>
+              <Description>"DpadRight"</Description>
+              <LastState Value="0" RealAddress="1B7C2058621"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A1</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>315</ID>
+              <Description>"L1"</Description>
+              <LastState Value="0" RealAddress="1B7C2058622"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A2</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>316</ID>
+              <Description>"L2Btn"</Description>
+              <LastState Value="0" RealAddress="1B7C2058623"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A3</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>317</ID>
+              <Description>"L3"</Description>
+              <LastState Value="0" RealAddress="1B7C2058624"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>318</ID>
+              <Description>"R1"</Description>
+              <LastState Value="0" RealAddress="1B7C2058625"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A5</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>319</ID>
+              <Description>"R2Btn"</Description>
+              <LastState Value="0" RealAddress="1B7C2058626"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A6</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>320</ID>
+              <Description>"R3"</Description>
+              <LastState Value="0" RealAddress="1B7C2058627"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A7</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>321</ID>
+              <Description>"Share"</Description>
+              <LastState Value="0" RealAddress="1B7C2058628"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>322</ID>
+              <Description>"Options"</Description>
+              <LastState Value="0" RealAddress="1B7C2058629"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+A9</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>323</ID>
+              <Description>"PS"</Description>
+              <LastState Value="0" RealAddress="1B7C205862A"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AA</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>324</ID>
+              <Description>"Mute"</Description>
+              <LastState Value="0" RealAddress="1B7C205862B"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AB</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>325</ID>
+              <Description>"Touch1"</Description>
+              <LastState Value="0" RealAddress="1B7C205862C"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AC</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>326</ID>
+              <Description>"Touch2"</Description>
+              <LastState Value="0" RealAddress="1B7C205862D"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AD</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>327</ID>
+              <Description>"TouchButton"</Description>
+              <LastState Value="0" RealAddress="1B7C205862E"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AE</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>328</ID>
+              <Description>"TouchRight"</Description>
+              <LastState Value="0" RealAddress="1B7C205862F"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+AF</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>329</ID>
+              <Description>"TouchLeft"</Description>
+              <LastState Value="0" RealAddress="1B7C2058630"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>330</ID>
+              <Description>"Touch1Finger"</Description>
+              <LastState Value="0" RealAddress="1B7C2058631"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B1</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>331</ID>
+              <Description>"Touch2Fingers"</Description>
+              <LastState Value="0" RealAddress="1B7C2058632"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B2</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>332</ID>
+              <Description>"OutputTouchButton"</Description>
+              <LastState Value="0" RealAddress="1B7C2058633"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B3</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>333</ID>
+              <Description>"Touch1Identifier"</Description>
+              <LastState Value="0" RealAddress="1B7C2058634"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>334</ID>
+              <Description>"Touch2Identifier"</Description>
+              <LastState Value="0" RealAddress="1B7C2058635"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B5</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>335</ID>
+              <Description>"LX"</Description>
+              <LastState Value="128" RealAddress="1B7C2058636"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B6</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>336</ID>
+              <Description>"RX"</Description>
+              <LastState Value="128" RealAddress="1B7C2058637"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B7</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>337</ID>
+              <Description>"LY"</Description>
+              <LastState Value="128" RealAddress="1B7C2058638"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>338</ID>
+              <Description>"RY"</Description>
+              <LastState Value="137" RealAddress="1B7C2058639"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+B9</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>339</ID>
+              <Description>"L2"</Description>
+              <LastState Value="0" RealAddress="1B7C205863A"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+BA</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>340</ID>
+              <Description>"R2"</Description>
+              <LastState Value="0" RealAddress="1B7C205863B"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+BB</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>341</ID>
+              <Description>"FrameCounter"</Description>
+              <LastState Value="255" RealAddress="1B7C205863C"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+BC</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>342</ID>
+              <Description>"TouchPacketCounter"</Description>
+              <LastState Value="255" RealAddress="1B7C205863D"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+BD</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>343</ID>
+              <Description>"Battery"</Description>
+              <LastState Value="0" RealAddress="1B7C205863E"/>
+              <VariableType>Byte</VariableType>
+              <Address>[XinputMap]-30+BE</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>344</ID>
+              <Description>"ReportTimeStamp"</Description>
+              <LastState Value="0" RealAddress="1B7C2058640"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+C0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>345</ID>
+              <Description>"ReportTimeStamp_2"</Description>
+              <LastState Value="0" RealAddress="1B7C2058644"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+C4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>346</ID>
+              <Description>"TrackPadTouch0"</Description>
+              <LastState Value="0" RealAddress="1B7C2058648"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+C8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>347</ID>
+              <Description>"TrackPadTouch0_2"</Description>
+              <LastState Value="0" RealAddress="1B7C205864C"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+CC</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>348</ID>
+              <Description>"TrackPadTouch1"</Description>
+              <LastState Value="0" RealAddress="1B7C2058650"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+D0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>349</ID>
+              <Description>"TrackPadTouch1_2"</Description>
+              <LastState Value="0" RealAddress="1B7C2058654"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+D4</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>350</ID>
+              <Description>"TrackPadTouch1_3"</Description>
+              <LastState Value="0" RealAddress="1B7C2058658"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+D8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>351</ID>
+              <Description>"TrackPadTouch1_4"</Description>
+              <LastState Value="0" RealAddress="1B7C205865C"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>[XinputMap]-30+DC</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>373</ID>
+          <Description>"Joycon Wiz Lights (global)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//sig: 83 ec ? 48 8b 41 ? 4c 8b c0
+// 2.2.2
+alloc(Variable,200) //188 is the lenght of my hex string
+registersymbol(Variable)
+Variable:
+db 'wizlight on --ip 192.168.0.16 --k 5000 --brightness '
+
+alloc(Store,100)
+
+
+alloc(Previus,20)
+
+
+registersymbol(Store)
+
+alloc(AllowExecute,1)
+registersymbol(AllowExecute)
+
+
+aobscan(struc,48 8b c4 48 89 58 ? 48 89 70 ? 48 89 78 ? 55 48 8d 68 ? 48 81 ec ? ? ? ? 48 8b 05 ? ? ? ? 48 33 c4 48 89 45 ? 8b da)
+registersymbol(struc)
+
+
+/////////////////////////////////////////
+
+alloc(RocketWeb,2048,XinputMap)
+
+
+
+label(killRocketWeb)
+registersymbol(killRocketWeb)
+createthread(RocketWeb)
+label(main)
+registersymbol(main,RocketWeb)
+
+
+
+
+RocketWeb:
+  sub rsp,20  //shadow space
+main:
+  mov al,[killRocketWeb]
+  test al,al //disable check
+  jnz deallockillthread
+
+  mov ecx,#1000
+  call kernel32.Sleep
+jmp @skip_quick_main
+
+@quick_main:
+  mov al,[killRocketWeb]
+  test al,al //disable check
+  jnz deallockillthread
+
+  mov ecx,#300
+  call kernel32.Sleep
+@skip_quick_main:
+
+
+{$lua}
+if syntaxcheck then return end--don't execute the code when cheat engine goes to do it's syntax check
+if tm ~=nil then tm.destroy() end
+
+
+--replace while loop with timer:
+tm = createTimer()
+tm.Interval = 1
+tm.OnTimer = function()
+
+
+
+ptr = 'Store'
+
+writeInteger(ptr,0) --reset "Store"
+
+read = readBytes('[XinputMap]+89') --input
+writeString(ptr,tostring(read)) --write to "Store"
+
+end
+{$asm}
+
+
+
+
+@skip:
+
+
+mov [Store+3],0 //no extra characters
+
+mov eax,[Store]
+mov [Variable+40-C],eax
+
+//Lower the request amount
+  push rcx
+  mov rcx,[XinputMap]
+  test rcx,rcx
+  jz @f
+  movzx eax, byte ptr [rcx+89] // number to be converted +89
+  cmp [Previus],eax
+@@:
+  pop rcx //}
+  je @quick_main
+
+
+  push rcx
+  mov rcx,[XinputMap]
+  test rcx,rcx
+  jz @f
+  movzx eax, byte ptr [rcx+89] // number to be converted +89
+  mov [Previus],eax
+@@:
+  pop rcx //}
+
+
+{cmp byte ptr [AllowExecute],0
+je @next
+dec byte ptr [AllowExecute] //}
+
+    push rdi
+    mov edx,0
+    mov rcx,Variable
+    call struc
+    pop rdi
+
+
+@next:
+
+//Don't edit after this
+  jmp main
+
+deallockillthread:
+  add rsp,20              // Shadow space
+  mov rcx,RocketWeb         // lpAddress
+  xor rdx,rdx              // dwSize
+  mov r8d,8000          // dwFreeType = MEM_RELEASE
+  jmp kernel32.VirtualFree
+  db CC CC CC CC
+
+killRocketWeb:
+db 0
+
+
+[DISABLE]
+
+killRocketWeb:
+  db 1
+unregistersymbol(killRocketWeb)
+
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>374</ID>
+              <Description>"AllowExecute"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>AllowExecute</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>395</ID>
+              <Description>"--"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>375</ID>
+              <Description>"Store"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>385</ID>
+              <Description>"Store"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>2 Bytes</VariableType>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>378</ID>
+              <Description>"Store"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>386</ID>
+              <Description>"Store"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>8 Bytes</VariableType>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>376</ID>
+              <Description>"Store"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>10</ByteLength>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>377</ID>
+              <Description>"Store"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <Color>0000FF</Color>
+              <VariableType>String</VariableType>
+              <Length>10</Length>
+              <Unicode>0</Unicode>
+              <CodePage>0</CodePage>
+              <ZeroTerminate>1</ZeroTerminate>
+              <Address>Store</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>384</ID>
+              <Description>"--"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>389</ID>
+              <Description>"TheNumber"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>0000FF</Color>
+              <VariableType>Byte</VariableType>
+              <Address>TheNumber</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>168</ID>
+      <Description>"tools"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>008000</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>365</ID>
+          <Description>"Block commands"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//sig: 83 ec ? 48 8b 41 ? 4c 8b c0
+// Tested on: 2.2.2
+// Tested on: 2.2.4
+
+
+aobscan(dsjfgjhdfds,83 EC 28 48 8B 41 10 4C 8B C0) // should be unique
+registersymbol(dsjfgjhdfds)
+dsjfgjhdfds:
+  db C3 90 90 48 8B 41 10
+[DISABLE]
+
+dsjfgjhdfds:
+  db 83 EC 28 48 8B 41 10
+
+unregistersymbol(dsjfgjhdfds)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: DS4Windows.DS4StateFieldMapping::populateState+1
+
+7FF7FEB327D5: 70 00                       - jo 7FF7FEB327D7
+7FF7FEB327D7: 00 40 00                    - add [rax+00],al
+7FF7FEB327DA: 00 00                       - add [rax],al
+7FF7FEB327DC: 00 00                       - add [rax],al
+7FF7FEB327DE: 00 00                       - add [rax],al
+7FF7FEB327E0: 00 00                       - add [rax],al
+7FF7FEB327E2: 00 00                       - add [rax],al
+7FF7FEB327E4: 00 00                       - add [rax],al
+7FF7FEB327E6: 00 00                       - add [rax],al
+7FF7FEB327E8: A0 00 BA FE F7 7F 00 00 48  - mov al,[4800007FF7FEBA00]
+// ---------- INJECTING HERE ----------
+DS4Windows.DS4StateFieldMapping::populateState+1: 83 EC 28                    - sub esp,28
+// ---------- DONE INJECTING  ----------
+DS4Windows.DS4StateFieldMapping::populateState+4: 48 8B 41 10                 - mov rax,[rcx+10]
+DS4Windows.DS4StateFieldMapping::populateState+8: 4C 8B C0                    - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+B: 45 8B 48 08                 - mov r9d,[r8+08]
+DS4Windows.DS4StateFieldMapping::populateState+F: 41 83 F9 01                 - cmp r9d,01
+DS4Windows.DS4StateFieldMapping::populateState+13: 0F 86 05 02 00 00           - jbe DS4Windows.DS4StateFieldMapping::populateState+21E
+DS4Windows.DS4StateFieldMapping::populateState+19: 45 0F B6 40 11              - movzx r8d,byte ptr [r8+11]
+DS4Windows.DS4StateFieldMapping::populateState+1E: 44 88 82 86 00 00 00        - mov [rdx+00000086],r8l
+DS4Windows.DS4StateFieldMapping::populateState+25: 4C 8B C0                    - mov r8,rax
+DS4Windows.DS4StateFieldMapping::populateState+28: 41 83 F9 02                 - cmp r9d,02
+DS4Windows.DS4StateFieldMapping::populateState+2C: 0F 86 EC 01 00 00           - jbe DS4Windows.DS4StateFieldMapping::populateState+21E
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>newmem</Name>
+      <Address>014B0000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>newmemA</Name>
+      <Address>06280000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>DrawThis</Name>
+      <Address>24DEBD40000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>asmMsgBox</Name>
+      <Address>016F03F0</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>bypassScript</Name>
+      <Address>02B90000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>procid</Name>
+      <Address>14C0000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>asmJingleBells</Name>
+      <Address>016F0000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>dobeep</Name>
+      <Address>016F0490</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>start</Name>
+      <Address>0AEC0000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>AllCraftAOB</Name>
+      <Address>14016D516</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>FreeCraftAOB</Name>
+      <Address>1402D4A33</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>NoGoodsConsume</Name>
+      <Address>14049D900</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>UnlimitedItems2</Name>
+      <Address>1402DD036</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>PlayerNew</Name>
+      <Address>13FAD0771</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>Calculator</Name>
+      <Address>02FF0000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>testKey</Name>
+      <Address>52E20000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>Convert</Name>
+      <Address>5F6D05E0</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>Brain</Name>
+      <Address>74960000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>Settings</Name>
+      <Address>23D82410000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>Globalmemory</Name>
+      <Address>18082A10000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>
