@@ -5,8 +5,11 @@ Using a little bit of assembly and lua we can dected any input (eg. gyro or stic
 * Requirements:
 
 pip install pywizlight
+
 Cheat Engine 7.2+
+
 DS4Windows 2.2.2 or 2.2.4 (tested only on theese two)
+
 WizLightbulb
 
 * Guide
