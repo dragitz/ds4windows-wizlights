@@ -1,10 +1,12 @@
 # ds4windows-wizlights
 Using a little bit of assembly and lua we can dected any input (eg. gyro or stick) and use it as a value to modify Wiz lightbulbs.
 
+Video demo: https://www.youtube.com/watch?v=fyVli2iA4FU
 
 * Requirements:
-
+``
 pip install pywizlight
+`` 
 
 Cheat Engine 7.2+
 
@@ -30,4 +32,6 @@ If you want to use the gyro data, manually remap gyro data to upward/downward mo
 
 * Bugs
 
-I haven't fully adapted the script for all possible ip addresses, so if your ip is bigger than 192.168.9.99, it won't work and you must manually change line 92 "Joycon Wiz Lights (global)" ¯\_(ツ)_/¯ sorry, not sorry
+I haven't fully adapted the script for all possible ip addresses, that's because there's a set byte lenght so if your ip is bigger than 192.168.9.99, it won't work and you must manually change line 92 "Joycon Wiz Lights (global)" 
+
+¯\_(ツ)_/¯ sorry, not sorry
